@@ -25,11 +25,27 @@ TODO
 
 The existing definitions from [ERC-7540](./eip-7540.md) apply.
 
+### Cancelation Lifecycle
+
+After submission, cancelation Requests go through Pending, Claimable, and Claimed stages. An example lifecycle for a deposit cancelation Request is visualized in the table below.
+
+| **State**   | **User**                         | **Vault** |
+|-------------|---------------------------------|-----------|
+| Pending     | `cancelDepositRequest(requestId, owner)` | `pendingCancelDepositRequest[owner] = true` |
+| Claimable   |                                 | *Internal cancelation fulfillment*:  `pendingCancelDepositRequest[owner] = false`; `claimableCancelDepositRequest[owner] = assets` |
+| Claimed     | `claimCancelDepositRequest(requestId, receiver, owner)`      | `claimableDepositRequest[owner] -= assets`; `asset.balanceOf[receiver] += assets` |
+
+Requests MUST NOT skip or otherwise short-circuit the Claim state. In other words, to initiate and claim a Request, a user MUST call both cancel* and the corresponding Claim function separately, even in the same block. Vaults MUST NOT "push" tokens onto the user after a Request, users MUST "pull" the tokens via the Claim function.
+
+While a deposit cancelation Request is Pending, new deposit Requests are blocked. Likewise, while a redeem cancelation Request is Pending, new redeem Requests are blocked.
+
 ### Methods
 
 #### cancelDepositRequest
 
 Submits a Request for asynchronous deposit cancelation. This places the Request in Pending state, with a corresponding increase in `pendingCancelDepositRequest` for the full amount of the pending deposit Request. 
+
+When the cancelation is Pending, new deposit Requests are blocked and `requestDeposit` MUST revert.
 
 When the cancelation is Claimable, `claimableCancelDepositRequest` will be increased for the `owner`. `claimCancelDepositRequest` can subsequently be called by `owner` to receive `assets`. A Request MAY transition straight to Claimable state but MUST NOT skip the Claimable state.
 
@@ -126,6 +142,8 @@ MUST emit the `ClaimCancelDepositRequest` event.
 #### cancelRedeemRequest
 
 Submits a Request for asynchronous redeem cancelation. This places the Request in Pending state, with a corresponding increase in `pendingCancelRedeemRequest` for the full amount of the pending redeem Request. 
+
+When the cancelation is Pending, new redeem Requests are blocked and `requestRedeem` MUST revert.
 
 When the cancelation is Claimable, `claimableCancelRedeemRequest` will be increased for the `owner`. `claimCancelRedeemRequest` can subsequently be called by `owner` to receive `shares`. A Request MAY transition straight to Claimable state but MUST NOT skip the Claimable state.
 
