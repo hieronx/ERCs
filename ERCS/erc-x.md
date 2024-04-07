@@ -308,14 +308,14 @@ MUST be emitted when a deposit cancelation Request is submitted using the `cance
       type: address
 ```
 
-#### ClaimCanceRedeemRequest
+#### ClaimCancelRedeemRequest
 
-`owner` has claimed their redeem cancelation Request with request ID `requestId`. `receiver` is the destination of the `assets`. `sender` is the caller of the `claimCanceRedeemRequest` which may not be equal to the `owner`.
+`owner` has claimed their redeem cancelation Request with request ID `requestId`. `receiver` is the destination of the `assets`. `sender` is the caller of the `claimCancelRedeemRequest` which may not be equal to the `owner`.
 
-MUST be emitted when a redeem cancelation Request is submitted using the `claimCanceRedeemRequest` method.
+MUST be emitted when a redeem cancelation Request is submitted using the `claimCancelRedeemRequest` method.
 
 ```yaml
-- name: ClaimCanceRedeemRequest
+- name: ClaimCancelRedeemRequest
   type: event
 
   inputs:
