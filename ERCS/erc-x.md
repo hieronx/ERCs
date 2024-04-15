@@ -99,7 +99,7 @@ MUST NOT show any variations depending on the caller.
 MUST NOT revert unless due to integer overflow caused by an unreasonably large input.
 
 ```yaml
-- name: pendingCancelDepositRequest
+- name: claimableCancelDepositRequest
   type: function
   stateMutability: view
 
@@ -197,7 +197,7 @@ MUST NOT show any variations depending on the caller.
 MUST NOT revert unless due to integer overflow caused by an unreasonably large input.
 
 ```yaml
-- name: pendingCancelRedeemRequest
+- name: claimableCancelRedeemRequest
   type: function
   stateMutability: view
 
