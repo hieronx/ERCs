@@ -8,7 +8,7 @@ status: Draft
 type: Standards Track
 category: ERC
 created: 2024-04-07
-requires: 20, 165, 7575
+requires: 165, 7540
 ---
 
 ## Abstract
@@ -17,7 +17,9 @@ The following standard extends [ERC-7540](./eip-7540.md) by adding support for a
 
 ## Motivation
 
-TODO
+Shares or assets locked for Requests can be stuck in the Pending state. For some use cases, such as redeeming from a pool of long-dated real-world assets, this can take a considerable amount of time.
+
+This standard expands the scope Asynchronous ERC-7540 Vaults by adding cancelation support.
 
 ## Specification
 
