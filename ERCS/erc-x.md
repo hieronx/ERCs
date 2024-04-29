@@ -263,28 +263,31 @@ MUST be emitted when a deposit cancelation Request is submitted using the `cance
       type: address
 ```
 
-#### ClaimCancelDepositRequest
+#### CancelDepositClaim
 
 `owner` has claimed their deposit cancelation Request with request ID `requestId`. `receiver` is the destination of the `assets`. `sender` is the caller of the `claimCancelDepositRequest` which may not be equal to the `owner`.
 
 MUST be emitted when a deposit cancelation Request is submitted using the `claimCancelDepositRequest` method.
 
 ```yaml
-- name: ClaimCancelDepositRequest
+- name: CancelDepositClaim
   type: event
 
   inputs:
-    - name: sender
-      indexed: false
-      type: address
     - name: receiver
-      indexed: false
+      indexed: true
       type: address
     - name: owner
       indexed: true
       type: address
     - name: requestId
       indexed: true
+      type: uint256
+    - name: sender
+      indexed: false
+      type: address
+    - name: assets
+      indexed: false
       type: uint256
 ```
 
@@ -310,28 +313,31 @@ MUST be emitted when a deposit cancelation Request is submitted using the `cance
       type: address
 ```
 
-#### ClaimCancelRedeemRequest
+#### CancelRedeemClaim
 
-`owner` has claimed their redeem cancelation Request with request ID `requestId`. `receiver` is the destination of the `assets`. `sender` is the caller of the `claimCancelRedeemRequest` which may not be equal to the `owner`.
+`owner` has claimed their redeem cancelation Request with request ID `requestId`. `receiver` is the destination of the `shares`. `sender` is the caller of the `claimCancelRedeemRequest` which may not be equal to the `owner`.
 
 MUST be emitted when a redeem cancelation Request is submitted using the `claimCancelRedeemRequest` method.
 
 ```yaml
-- name: ClaimCancelRedeemRequest
+- name: CancelRedeemClaim
   type: event
 
   inputs:
-    - name: sender
-      indexed: false
-      type: address
     - name: receiver
-      indexed: false
+      indexed: true
       type: address
     - name: owner
       indexed: true
       type: address
     - name: requestId
       indexed: true
+      type: uint256
+    - name: sender
+      indexed: false
+      type: address
+    - name: shares
+      indexed: false
       type: uint256
 ```
 
