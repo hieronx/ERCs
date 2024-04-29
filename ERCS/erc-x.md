@@ -339,9 +339,9 @@ MUST be emitted when a redeem cancelation Request is submitted using the `claimC
 
 Smart contracts implementing this Vault standard MUST implement the [ERC-165](./eip-165.md) `supportsInterface` function.
 
-Asynchronous deposit Vaults with cancelation support MUST return the constant value `true` if `TODO` is passed through the `interfaceID` argument.
+Asynchronous deposit Vaults with cancelation support MUST return the constant value `true` if `0x8bf840e3` is passed through the `interfaceID` argument.
 
-Asynchronous redemption Vaults with cancelation support MUST return the constant value `true` if `TODO` is passed through the `interfaceID` argument.
+Asynchronous redemption Vaults with cancelation support MUST return the constant value `true` if `0xe76cffc7` is passed through the `interfaceID` argument.
 
 ## Rationale
 
