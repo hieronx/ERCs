@@ -2,12 +2,12 @@
 eip: x
 title: Cancelation for ERC-7540 Tokenized Vaults
 description: Extension of ERC-7540 with cancelation support
-author: Jeroen Offerijns (@hieronx), Alina Sinelnikova (@ilinzweilin), Vikram Arun (@vikramarun), Joey Santoro (@joeysantoro), Farhaan Ali (@0xfarhaan)
+author: Jeroen Offerijns (@hieronx)
 discussions-to: TODO
 status: Draft
 type: Standards Track
 category: ERC
-created: 2024-04-07
+created: 2025-02-18
 requires: 165, 7540
 ---
 
@@ -276,10 +276,10 @@ MUST be emitted when a deposit cancelation Request is submitted using the `claim
   type: event
 
   inputs:
-    - name: receiver
+    - name: controller
       indexed: true
       type: address
-    - name: controller
+    - name: receiver
       indexed: true
       type: address
     - name: requestId
@@ -326,10 +326,10 @@ MUST be emitted when a redeem cancelation Request is submitted using the `claimC
   type: event
 
   inputs:
-    - name: receiver
+    - name: controller
       indexed: true
       type: address
-    - name: controller
+    - name: receiver
       indexed: true
       type: address
     - name: requestId
